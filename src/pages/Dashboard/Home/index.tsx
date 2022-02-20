@@ -73,6 +73,11 @@ export const Home = () => {
         statusDisplayNames={{ on: 'Включена', off: 'Отключена' }}
         value={selector('alarm_enabled')}
       />
+      <Bool
+        displayName="Присутствие пациента"
+        statusDisplayNames={{ on: 'В палате', off: 'Не в палате' }}
+        value={!selector('alarm_enabled')}
+      />
     </div>
   );
 };
