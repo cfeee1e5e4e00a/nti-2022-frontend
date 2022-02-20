@@ -8,7 +8,7 @@ type Props = {
 
 export const DashboardLayout = ({ children }: Props) => {
   return (
-    <div className="w-full h-full flex flex-row bg-blue-100">
+    <div className="w-full h-full flex flex-row">
       <Menu />
       {children}
     </div>

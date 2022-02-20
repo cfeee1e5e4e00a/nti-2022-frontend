@@ -1,24 +1,30 @@
 import { createContext, Dispatch, ReactNode, Reducer, useReducer } from 'react';
-
-export enum AuthAction {
-  signin,
-  signout,
-}
+import { act } from 'react-dom/test-utils';
+import { AuthMeResponse, AuthRole } from 'services/auth';
+import { ProfileProfile } from 'services/profile';
 
 type AuthState = {
   authed: boolean;
+  role?: AuthRole;
+  profile?: ProfileProfile;
 };
 
-type AuthReducer = {
-  type: AuthAction;
-};
+type AuthAction =
+  | { type: 'signin'; payload: AuthMeResponse }
+  | { type: 'signout' };
 
-const reducer: Reducer<AuthState, AuthReducer> = (state, action) => {
+const reducer: Reducer<AuthState, AuthAction> = (state, action) => {
   switch (action.type) {
-    case AuthAction.signin:
-      return { ...state, authed: true };
-    case AuthAction.signout:
-      return { ...state, authed: false };
+    case 'signin':
+      const { role, profile } = action.payload;
+      return {
+        ...state,
+        authed: true,
+        role,
+        profile,
+      };
+    case 'signout':
+      return { authed: false };
   }
 };
 
@@ -26,12 +32,12 @@ const initialState: AuthState = {
   authed: false,
 };
 
-type UseAuthReducer = {
+type UseAuthHook = () => {
   state: AuthState;
-  dispatch: Dispatch<AuthReducer>;
+  dispatch: Dispatch<AuthAction>;
 };
 
-const useAuthReducer = (): UseAuthReducer => {
+const useAuthReducer: UseAuthHook = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return {
@@ -40,7 +46,7 @@ const useAuthReducer = (): UseAuthReducer => {
   };
 };
 
-export const AuthContext = createContext<UseAuthReducer>({
+export const AuthContext = createContext<ReturnType<UseAuthHook>>({
   state: initialState,
   dispatch: () => {},
 });

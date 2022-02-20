@@ -54,9 +54,9 @@ export const Menu = () => {
           />
         ))}
       </ul>
-      <div className="w-full px-4 py-8 flex flex-col items-center justify-center gap-2 text-xl">
-        <span>User</span>
-        <div className="w-12 h-12 border bg-gray-100 rounded-full"></div>
+      <div className="w-full px-4 py-8 flex flex-col items-center justify-center gap-4 text-xl">
+        <span className="text-center">{`${auth.profile?.name} ${auth.profile?.surname}`}</span>
+        {auth.role === 'doctor' && <span className="text-center">Врач</span>}
         <span className="cursor-pointer" onClick={signout}>
           ← Выйти
         </span>

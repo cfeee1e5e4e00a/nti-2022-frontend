@@ -5,7 +5,7 @@ import { AuthProvider } from 'contexts/auth';
 
 import { App } from './App';
 
-import './index.css';
+import 'styles/index.css';
 
 ReactDOM.render(
   <React.StrictMode>
