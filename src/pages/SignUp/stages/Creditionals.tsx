@@ -8,7 +8,6 @@ import { Header } from 'components/Form/Header';
 import { RadioGroup } from 'components/Form/RadioGroup';
 import { Button } from 'components/ui/Button';
 import { Input } from 'components/ui/Input';
-import { Link } from 'components/ui/Link';
 
 type Props = {
   onSubmit: (creditionals: Omit<AuthSignUpDTO, 'rfid'>) => void;
@@ -36,7 +35,7 @@ export const Creditionals = ({ onSubmit }: Props) => {
         onSubmit({
           login: login.value,
           password: password.value,
-          role: 'doctor',
+          role: 'patient',
           profile: {
             name: name.value,
             surname: surname.value,
@@ -46,7 +45,7 @@ export const Creditionals = ({ onSubmit }: Props) => {
         })
       }
     >
-      <Header>Регистрация Врача</Header>
+      <Header>Добавление пациента</Header>
       <Input className="w-full" model={login} placeholder="Логин" />
       <Input
         className="w-full"
@@ -75,8 +74,7 @@ export const Creditionals = ({ onSubmit }: Props) => {
         displayName="Пол"
         variants={sexes}
       />
-      <Link href="/signin">Уже зарегистрированы?</Link>
-      <Button type="submit">Зарегистрироваться</Button>
+      <Button type="submit">Далее</Button>
     </Container>
   );
 };

@@ -1,3 +1,4 @@
+import { coreApiOrigin } from 'api/core';
 import { createContext, ReactNode, useEffect, useRef, useState } from 'react';
 import { RealtimeState, RealtimeService } from 'services/realtime';
 
@@ -18,7 +19,6 @@ const useRealtime: UseRealtimeHook = (url: URL) => {
   }, [url]);
 
   realtimeService.current?.setOnUpdate((newState) => {
-    console.log({ ...state, ...newState });
     setState({ ...state, ...newState });
   });
 
@@ -32,7 +32,7 @@ type RealtimeProviderProps = {
 };
 
 // TODO: use .env
-const url = new URL(`ws://${process.env.REACT_APP_API_CORE_URL}/api/ws`);
+const url = new URL(`ws://${coreApiOrigin.host}/api/ws`);
 
 export const RealtimeProvider = ({ children }: RealtimeProviderProps) => {
   const state = useRealtime(url);

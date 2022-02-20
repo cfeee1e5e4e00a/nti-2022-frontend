@@ -20,7 +20,7 @@ export const TabLayout = ({ tabs, defaultTab }: Props) => {
 
   return (
     <>
-      <ul className="flex flex-row gap-px bg-gray-200 mb-8">
+      <ul className="flex flex-row mb-8">
         {tabs.map((t) => (
           <li
             className={`p-4 w-full flex items-center justify-center bg-white first:rounded-l-lg last:rounded-r-lg cursor-pointer transition duration-300 text-lg font-medium ${

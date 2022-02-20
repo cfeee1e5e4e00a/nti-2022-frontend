@@ -8,6 +8,7 @@ type Props = {
   placeholder?: string;
   type?: InputHTMLAttributes<HTMLInputElement>['type'];
   className?: string;
+  withClear?: boolean;
 };
 
 export const Input = ({
@@ -15,6 +16,7 @@ export const Input = ({
   placeholder = '',
   type,
   className = '',
+  withClear = true,
 }: Props) => {
   const { value, onChange, clear } = model;
 
@@ -29,7 +31,7 @@ export const Input = ({
         onChange={onChange}
         type={type}
       />
-      {showClear && (
+      {withClear && showClear && (
         <span className="absolute top-2 right-2" onClick={() => clear()}>
           <XIcon className="w-6 h-6 text-gray-500 transition hover:duration-100 hover:text-black cursor-pointer" />
         </span>

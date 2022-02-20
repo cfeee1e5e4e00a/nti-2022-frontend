@@ -31,14 +31,14 @@ export const Dashboard = () => {
   const location = useLocation();
 
   return (
-    <DashboardLayout>
-      <RealtimeProvider>
+    <RealtimeProvider>
+      <DashboardLayout>
         <TransitionGroup className="w-full h-full">
           <CSSTransition key={location.key} classNames="fade" timeout={300}>
             <LoaderTransition />
           </CSSTransition>
         </TransitionGroup>
-      </RealtimeProvider>
-    </DashboardLayout>
+      </DashboardLayout>
+    </RealtimeProvider>
   );
 };

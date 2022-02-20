@@ -35,7 +35,6 @@ export const SignInPage = () => {
           model={password}
           placeholder="Пароль"
         />
-        <Link href="/signup">Зарегистрироваться</Link>
         <Button type="submit">Войти</Button>
       </Container>
     </div>

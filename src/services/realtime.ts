@@ -8,12 +8,14 @@ export type RealtimeSensorTypeMap = {
   cooler_enabled: boolean;
   door_opened: boolean;
   heater_enabled: boolean;
-  alv: number;
+  alv_failed: boolean;
   window: number;
   cool_temp: number;
   heat_temp: number;
   target_light: number;
   rfid: number;
+  alarm_enabled: boolean;
+  alarm: boolean;
 };
 
 export type RealtimeSensorTag = keyof RealtimeSensorTypeMap;

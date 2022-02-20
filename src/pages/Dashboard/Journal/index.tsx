@@ -21,6 +21,12 @@ const Tab = ({ tag }: { tag: JournalRecordTag }) => {
 const tabs: TabLayoutTab[] = [
   { key: 'rfid', displayName: 'RFID-Карты', render: () => <Tab tag="RFID" /> },
   { key: 'face', displayName: 'Face-ID', render: () => <Tab tag="FACE" /> },
+  {
+    key: 'alarm',
+    displayName: 'Сигнализация',
+    render: () => <Tab tag="ALARM" />,
+  },
+  { key: 'alv', displayName: 'ИВЛ', render: () => <Tab tag="ALV" /> },
 ];
 
 export const Journal = () => {

@@ -1,7 +1,7 @@
 import { coreApi } from 'api/core';
 import { AxiosInstance } from 'axios';
 
-export type JournalRecordTag = 'RFID' | 'FACE';
+export type JournalRecordTag = 'RFID' | 'FACE' | 'ALARM' | 'ALV';
 
 export type JournalRecord = {
   time: number;

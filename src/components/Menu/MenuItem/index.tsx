@@ -27,7 +27,7 @@ export const MenuItem = ({
       }}
     >
       <Icon className="w-6 h-6" />
-      <p className="text-lg">{displayName}</p>
+      <p className="text-lg text-center">{displayName}</p>
     </li>
   );
 };

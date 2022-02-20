@@ -7,10 +7,10 @@ type Props = DisplayProps<string | number>;
 
 const isFloat = (value: number) => !Number.isInteger(value);
 
-const toFixedPrecision = (value: number, precision = 2) =>
+const toFixedPrecision = (value: number, precision = 1) =>
   value.toFixed(precision);
 
-const normalize = (value: string | number) =>
+export const normalize = (value: string | number) =>
   r.is(Number)(value)
     ? r.ifElse(isFloat, toFixedPrecision, r.toString)(value)
     : r.identity(value);

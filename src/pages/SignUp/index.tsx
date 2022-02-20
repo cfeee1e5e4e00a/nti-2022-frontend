@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { AuthSignUpDTO } from 'services/auth';
@@ -25,18 +25,17 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  const fillDto = (
-    newFields: Omit<AuthSignUpDTO, 'rfid'> | Pick<AuthSignUpDTO, 'rfid'>
-  ) => {
-    if (stage < 2) {
+  const fillDto = useCallback(
+    (newFields: Omit<AuthSignUpDTO, 'rfid'> | Pick<AuthSignUpDTO, 'rfid'>) => {
       setDto({ ...dto, ...newFields });
       setStage(stage + 1);
-    }
-  };
+    },
+    [stage, dto]
+  );
 
   useEffect(() => {
     const signup = async (dto: AuthSignUpDTO) => {
-      // await auth.signup(dto);
+      await auth.signup(dto);
       console.log(dto);
       navigate('/');
     };
@@ -44,7 +43,7 @@ export const SignUpPage = () => {
     if (stage === 2) {
       signup(dto);
     }
-  }, [dto, stage, navigate]);
+  }, [dto, stage, navigate, auth]);
 
   return (
     <div className="w-full h-full p-4 flex justify-center items-center">

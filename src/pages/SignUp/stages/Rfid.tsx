@@ -1,30 +1,36 @@
 import { AuthSignUpDTO } from 'services/auth';
 import { useEffect } from 'react';
-import { useRealtime } from 'hooks/useRealtime';
+import authService from 'services/auth';
 
 import { Container } from 'components/Form/Container';
 import { Header } from 'components/Form/Header';
+import { Button } from 'components/ui/Button';
 
 type Props = {
   onSubmit: (creditionals: Pick<AuthSignUpDTO, 'rfid'>) => void;
 };
 
 export const Rfid = ({ onSubmit }: Props) => {
-  const realtime = useRealtime();
+  const abortController = new AbortController();
+  const fetchRfid = async () =>
+    onSubmit(await authService.getRfid(abortController));
+
+  const skipRfid = () => {
+    abortController.abort();
+    onSubmit({ rfid: -1 });
+  };
 
   useEffect(() => {
-    const rfid = realtime.selector('rfid');
-    if (rfid) {
-      onSubmit({ rfid });
-    }
-  }, [realtime, onSubmit]);
+    fetchRfid();
+  }, []);
 
   return (
-    <Container onSubmit={() => onSubmit({ rfid: 1 })}>
+    <Container onSubmit={() => {}}>
       <Header>Регистрация RFID-Карты</Header>
       <p className="text-2xl font-medium text-center">
         Поднесите карту к считывателю
       </p>
+      <Button onClick={skipRfid}>Пропустить</Button>
     </Container>
   );
 };

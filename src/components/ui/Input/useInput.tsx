@@ -12,5 +12,6 @@ export const useInput = (initialValue = '') => {
     value,
     onChange,
     clear,
+    setValue,
   };
 };
